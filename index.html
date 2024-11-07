@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Ilias MESBAH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variables de couleur pour le mode sombre et clair */
+        :root {
+            --background-color: #f8f9fa;
+            --text-color: #212529;
+            --secondary-color: #5a9bd5;
+            --highlight-color: #e67e22;
+            --button-bg: #5a9bd5;
+            --button-text: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --background-color: #1e1e1e;
+            --text-color: #ffffff;
+            --secondary-color: #5a9bd5;
+            --highlight-color: #e67e22;
+            --button-bg: #5a9bd5;
+            --button-text: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.6);
+        }
+
+        /* Corps de la page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Bouton de bascule entre mode sombre et clair */
+        .toggle-theme {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .toggle-theme:hover {
+            background-color: var(--highlight-color);
+            transform: scale(1.05);
+        }
+
+        /* Section Hero */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            background-image: url('background.jpg'); /* Utilise une belle image de fond */
+            background-size: cover;
+            background-position: center;
+            color: var(--text-color);
+            position: relative;
+            padding: 20px;
+            box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            color: var(--highlight-color);
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: var(--button-text);
+            max-width: 700px;
+            animation: fadeIn 1.5s ease forwards;
+            margin-bottom: 30px;
+        }
+
+        .cv-link {
+            padding: 12px 30px;
+            color: var(--button-text);
+            background-color: var(--button-bg);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 20px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 18px;
+            display: inline-block;
+            box-shadow: 0 4px 12px var(--shadow-color);
+        }
+
+        .cv-link:hover {
+            background-color: var(--highlight-color);
+            transform: scale(1.05);
+        }
+
+        /* Sections */
+        .section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            background-color: #fff;
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--highlight-color);
+        }
+
+        /* Compétences */
+        .skills {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .skill {
+            width: 220px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid var(--shadow-color);
+            border-radius: 8px;
+            background-color: #f1f1f1;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px var(--shadow-color);
+        }
+
+        .skill-icon {
+            font-size: 48px;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress {
+            background-color: var(--secondary-color);
+            height: 10px;
+            border-radius: 5px;
+            transition: width 0.3s;
+        }
+
+        /* Projets */
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .project-card {
+            width: 280px;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px var(--shadow-color);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .project-title {
+            font-size: 24px;
+            color: var(--highlight-color);
+            margin-bottom: 5px;
+        }
+
+        /* Contact */
+        .contact-info {
+            font-size: 18px;
+            color: var(--secondary-color);
+            margin-top: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <!-- Bouton de bascule entre mode sombre et clair -->
+    <button class="toggle-theme" onclick="toggleTheme()">Mode Sombre/Clair</button>
+
+    <!-- Section Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Ilias MESBAH</h1>
+            <p>Étudiant en BTS SIO, spécialisé dans la cybersécurité. Passionné par l'informatique, je suis déterminé à utiliser mes compétences pour sécuriser les informations dans un monde de plus en plus connecté.</p>
+            <a href="cv.pdf" download="CV_Ilias_MESBAH.pdf" class="cv-link">Télécharger mon CV</a>
+        </div>
+    </section>
+
+    <!-- Section À propos -->
+    <section class="section" id="about">
+        <h2>À propos de moi</h2>
+        <p>Je m'appelle Ilias MESBAH, étudiant en première année de BTS SIO. Mon parcours en informatique m’a naturellement orienté vers la cybersécurité, où je souhaite contribuer à rendre le monde numérique plus sûr.</p>
+    </section>
+
+    <!-- Section Compétences -->
+    <section class="section" id="skills">
+        <h2>Compétences</h2>
+        <div class="skills">
+            <div class="skill">
+                <i class="skill-icon">💻</i>
+                <h3>HTML</h3>
+                <p>Création de structures de page modernes et fonctionnelles.</p>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 80%;"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <i class="skill-icon">🎨</i>
+                <h3>CSS</h3>
+                <p>Personnalisation de l'interface utilisateur pour un design attractif.</p>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 70%;"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <i class="skill-icon">⚙️</i>
+                <h3>JavaScript</h3>
+                <p>Interaction dynamique et animations pour améliorer l'expérience utilisateur.</p>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 60%;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Projets -->
+    <section class="section" id="projects">
+        <h2>Projets</h2>
+        <div class="projects">
+            <div class="project-card">
+                <img src="project1.jpg" alt="Projet 1" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Application Web</h3>
+                    <p>Création d'une application avec une interface moderne pour une meilleure expérience utilisateur.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="project2.jpg" alt="Projet 2" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Site Vitrine</h3>
+                    <p>Développement d'un site vitrine professionnel avec HTML, CSS et JavaScript.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section class="section" id="contact">
+        <h2>Contact</h2>
+        <p class="contact-info">Email: <a href="mailto:iliasmsbh446@gmail.com" style="color: var(--highlight-color);">iliasmsbh446@gmail.com</a></p>
+        <p class="contact-info">LinkedIn: <a href="https://www.linkedin.com/in/ilias-mesbah-54b1a9331/" target="_blank" style="color: var(--highlight-color);">LinkedIn</a></p>
+    </section>
+
+    <script>
+        function toggleTheme() {
+            document.body.dataset.theme = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+        }
+    </script>
+</body>
+</html>
+
